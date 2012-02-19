@@ -1,4 +1,20 @@
-﻿function QuoteTweet(){
+﻿/*
+ * Copyright 2011 wada811 <89.at.usi@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+function QuoteTweet(){
 	var statusBoxID = ".twitter-anywhere-tweet-box-editor:last";
 	var QTTag = '<li class="action-quote-tweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="action-rt"></i><b>QT</b></a> </li>';
 
