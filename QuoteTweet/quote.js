@@ -1,6 +1,6 @@
 ﻿function QuoteTweet(){
 	var statusBoxID = ".twitter-anywhere-tweet-box-editor:last";
-	var QTTag = '<li class="action-old-retweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="action-rt"></i><b>QT</b></a> </li>';
+	var QTTag = '<li class="action-quote-tweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="action-rt"></i><b>QT</b></a> </li>';
 
 	var username = jQuery.trim($("#screen-name:first").text());
 
