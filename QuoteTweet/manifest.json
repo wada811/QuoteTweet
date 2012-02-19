@@ -1,0 +1,16 @@
+{
+   "content_scripts": [ {
+      "js": [ "jquery-1.7.1.js", "quote.js" ],
+      "matches": [ "http://*.twitter.com/*", "https://*.twitter.com/*", "http://twitter.com/*", "https://twitter.com/*"]
+   } ],
+   "description": "Quote Tweet in new Twitter Web",
+   "icons": {
+      "48": "icon.png"
+   },
+   "name": "Quote Tweet",
+   "page_action": {
+      "default_icon": "icon.png",
+      "default_title": "Quote Tweet"
+   },
+   "version": "1.0.0"
+}
