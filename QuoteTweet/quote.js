@@ -15,10 +15,7 @@
  */
 
 function QuoteTweet(){
-	var statusBoxID = ".twitter-anywhere-tweet-box-editor:last";
 	var QTTag = '<li class="action-quote-tweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="action-rt"></i><b>QT</b></a> </li>';
-
-	var username = jQuery.trim($("#screen-name:first").text());
 
 	$(".js-stream-item").live('mouseover',function(){
 		if ($(this).find(".quote-tweet-link").length == 0 ){
@@ -41,6 +38,27 @@ function QuoteTweet(){
 			});
 		}
 	});
+	
+	document.addEventListener('keyup', function(e){
+		if(e.keyCode == 81){
+			var expandedUrl = " QT";
+			$(".open").each(function(){
+				expandedUrl += " https://twitter.com" + $(this).find(".js-open-close-tweet").attr("href");
+				$(this).find(".twitter-timeline-link").each(function(){
+					expandedUrl += " " + $(this).attr("data-expanded-url");
+				});
+			});
+			if(expandedUrl != " QT"){
+				new twttr.widget.TweetDialog({
+					template:{title:"Quote Tweet"},
+					modal: true,
+					draggable: true,
+					defaultContent: expandedUrl,
+					origin: "new-tweet-titlebar-button"
+				}).open().focus();
+			}
+		}
+	}, false);
 }
 
 $(document).ready(function() {
