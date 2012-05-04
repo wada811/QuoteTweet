@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2011 wada811 <89.at.usi@gmail.com>
+ * Copyright 2012 wada811 <89.at.usi@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,45 +15,50 @@
  */
 
 function QuoteTweet(){
-	var QTTag = '<li class="action-quote-tweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="action-rt"></i><b>QT</b></a> </li>';
+	var QTTag = '<li class="action-quote-tweet-container quote-tweet-link"><a class="with-icn" href="#" title="Quote Tweet"> <i class="sm-rt"></i><b>QT</b></a> </li>';
 
 	$(".js-stream-item").live('mouseover',function(){
-		if ($(this).find(".quote-tweet-link").length == 0 ){
-			$(this).find(".client-and-actions .js-actions").append(QTTag).find(".quote-tweet-link").click(function(){
+		if ($(this).find(".quote-tweet-link").length == 0){
+			$(this).find(".js-actions").append(QTTag).find(".quote-tweet-link").click(function(){
 				var tweet = $(this).parent().parent().parent().parent().parent();
-				var tweettext = " QT https://twitter.com" +  tweet.find(".js-permalink").attr("href");
-				var expandedUrl = "";
+				var screenName = tweet.find(".tweet").attr("data-screen-name");
+				var tweetText = " QT @" + screenName +" https://twitter.com" + tweet.find(".tweet-timestamp").attr("href");
 				tweet.find(".twitter-timeline-link").each(function(){
-					expandedUrl += " " + $(this).attr("data-expanded-url");
+					tweetText += " " + $(this).attr("data-expanded-url");
 				});
-				tweettext += expandedUrl;
+				tweet.find(".twitter-hashtag").each(function(){
+					tweetText += " " + $(this).attr("title");
+				});
 				new twttr.widget.TweetDialog({
 					template:{title:"Quote Tweet"},
 					modal: true,
 					draggable: true,
-					defaultContent: tweettext,
+					defaultContent: tweetText,
 					origin: "new-tweet-titlebar-button"
 				}).open().focus();
 				return false;
 			});
 		}
 	});
-	
+
 	document.addEventListener('keyup', function(e){
 		if(e.keyCode == 81){
-			var expandedUrl = " QT";
+			var tweetText = " QT";
 			$(".open").each(function(){
-				expandedUrl += " https://twitter.com" + $(this).find(".js-open-close-tweet").attr("href");
+				tweetText += " https://twitter.com" + $(this).find(".js-permalink").attr("href");
 				$(this).find(".twitter-timeline-link").each(function(){
-					expandedUrl += " " + $(this).attr("data-expanded-url");
+					tweetText += " " + $(this).attr("data-expanded-url");
+				});
+				$(this).find(".twitter-hashtag").each(function(){
+					tweetText += " " + $(this).attr("title");
 				});
 			});
-			if(expandedUrl != " QT"){
+			if(tweetText != " QT"){
 				new twttr.widget.TweetDialog({
 					template:{title:"Quote Tweet"},
 					modal: true,
 					draggable: true,
-					defaultContent: expandedUrl,
+					defaultContent: tweetText,
 					origin: "new-tweet-titlebar-button"
 				}).open().focus();
 			}
